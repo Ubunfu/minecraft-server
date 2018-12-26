@@ -17,7 +17,7 @@ TIMESTAMP=$(date +%F.%H-%m-%S)
 LOG="/home/ec2-user/minecraft/logs/latest.log"
 
 echo "####################" | tee -a ${LOG}
-echo "### SERVER AUTO-BACKUP STARTED..." | tee -a ${LOG}
+echo "### SERVER AUTO-BACKUP STARTED @ $(date +%F\ %T)..." | tee -a ${LOG}
 
 # Wipe out any old local backups
 # We don't have space to maintain local backups
@@ -26,8 +26,11 @@ rm -rf /home/ec2-user/backups/*
 success | tee -a ${LOG}
 
 # tar up the whole server
+# MUST BE RUN FROM /home/ec2-user/
+# AND zip path given in the form ./minecraft/*, or the /home/ec2-user/ path will be added to the tar
 echo "### COMPRESSING WORLD..." | tee -a ${LOG}
-tar -czf /home/ec2-user/backups/${TIMESTAMP}.tar.gz --exclude=*.jar /home/ec2-user/minecraft/*
+cd /home/ec2-user/
+tar -czf /home/ec2-user/backups/${TIMESTAMP}.tar.gz --exclude=*.jar ./minecraft/*
 
 # Don't success check after the compression.
 # Tar will give non-zero status code when the world changes while compressing

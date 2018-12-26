@@ -9,7 +9,7 @@ mkdir /home/ec2-user/backups /home/ec2-user/scripts /home/ec2-user/bootstrap
 # Download scripts from S3
 aws s3 cp --recursive s3://mc-ryanallen-ninja/scripts/ /home/ec2-user/scripts/
 ### Allow execution of all scripts
-chmod 700 /home/ec2-user/scripts/*
+# chmod 700 /home/ec2-user/scripts/*
 
 # Update DNS records
 ### Get instance public IPv4 address 
@@ -28,8 +28,7 @@ aws route53 change-resource-record-sets --hosted-zone-id "Z1CGTP4HXR2GMJ" --chan
 aws s3 cp s3://mc-ryanallen-ninja/backups/latest.tar.gz /home/ec2-user/
 
 # Unpack the world
-cd /home/ec2-user
-tar -xzf /home/ec2-user/latest.tar.gz
+tar -C /home/ec2-user -xzf /home/ec2-user/latest.tar.gz
 
 # Delete the world file to save some disk space
 rm -f /home/ec2-user/latest.tar.gz
