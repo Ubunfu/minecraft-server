@@ -1,0 +1,18 @@
+{
+    "Comment": "Update mc server DNS entry",
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "mc.ryanallen.ninja",
+                "Type": "A",
+                "TTL": 60,
+                "ResourceRecords": [
+                    {
+                        "Value": "HOSTNAME"
+                    }
+                ]
+            }
+       }
+    ]
+}
