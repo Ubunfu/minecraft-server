@@ -9,7 +9,7 @@ mkdir /home/ec2-user/backups /home/ec2-user/scripts /home/ec2-user/bootstrap
 # Download scripts from S3
 aws s3 cp --recursive s3://mc-ryanallen-ninja/scripts/ /home/ec2-user/scripts/
 ### Allow execution of all scripts
-# chmod 700 /home/ec2-user/scripts/*
+chmod 700 /home/ec2-user/scripts/*
 
 # Update DNS records
 ### Get instance public IPv4 address 
